@@ -1,0 +1,561 @@
+<html>
+
+<head>
+    <title>M-Technique</title>
+    <style>
+        input {
+            font-size: medium;
+        }
+
+        .style1 {
+            width: 105px;
+        }
+    </style>
+</head>
+<script type="text/javascript">
+    var VN;
+    var CN;
+    var th = new Array();
+    var bv = new Array();
+    var zx;
+    var zy;
+    var step = 0;
+    // create objective function
+    function CreateOJ() {
+        var s;
+        var ROW;
+        var COL;
+        s = objecttype.options[objecttype.selectedIndex].text + " Z = ";
+        VN = nvar.value;
+        CN = ncon.value;
+        var i;
+        for (i = 0; i < VN; i++) {
+            value = "x" + (i + 1);
+            s += "<input type='text' id='xx" + i + "' size='4'/>" + "<input type='text' value='" + value + "' id='th" + i + "' size='3' />";
+            if (i != VN - 1) {
+                s += " + ";
+            }
+        }
+        of.innerHTML = s;
+
+        var constring;
+        var temp = "";
+        for (j = 0; j < CN; j++) {
+            for (i = 0; i < VN; i++) {
+                temp += "<input type='text' id='x" + j + i + "' size='3'/><font> </font>" + "<font id='fo_" + i + "' > " + document.getElementById("th" + i).value + " </font>";
+                if (i != VN - 1) {
+                    temp += " + ";
+                }
+            }
+            temp += "<select id='equ" + j + "' >";
+            temp += "<option value='less' selected='selected'>&lt;=</option>";
+            temp += "<option value='larger' >&gt;=</option>";
+            temp += "<option value='equal'>=</option>";
+            temp += "</select><font> </font>";
+            temp += "<input type='text' id='b" + j + "' size='3' /><br/>";
+        }
+        constr.innerHTML = temp;
+    }
+
+</script>
+<script type="text/javascript">
+    var a = new Array();
+    var b = new Array();
+    var M = new Array();
+    var row;
+    var col;
+    function solve() {
+        check();
+    }
+
+    function showtable() {
+        display.innerHTML += NewTable();
+    }
+    function check() {
+
+        var max = -1000.0;
+        var m = -100;
+        var maxm = -1000.0;
+        var mm = -1;
+        var tz = -1;
+        var i;
+        for (i = 0; i < M.length - 1; i++) {
+            if (M[i] > maxm) {
+                maxm = M[i];
+                mm = i;
+            }
+            if (M[i] != 0) {
+                tz = 0;
+            }
+        }
+
+
+        if (maxm <= 0 && maxm != -1000.0 && tz == 0) {
+            display.innerHTML += " The optimal solution";
+            return "";
+        }
+
+        if (tz != 0) {
+            for (i = 0; i < M.length - 1; i++) {
+                if (a[0][i] > max) {
+                    m = i;
+                    max = a[0][i];
+                }
+
+            }
+            if (max <= 0) {
+                display.innerHTML += "The optimal solution";
+
+                return "";
+            }
+        } else {
+            m = mm;
+        }
+
+        var vj = m;
+        var vi = 0;
+        var INF = 9e9;
+        var test = INF;
+        var minn = INF;
+        var aa;
+        for (i = 1; i < row; i++) {
+            if (a[i][vj] == 0)
+                test = INF;
+            else
+                test = b[i] / a[i][vj];
+            if (test < minn) {
+                vi = i;
+                minn = test;
+            }
+        }
+        bv[vi] = vj;
+        if (minn == INF || minn < 0) {
+            //message.innerHTML = "no solution";
+            return;
+        }
+        if (minn == INF || minn < 0) {
+            //   message.innerHTML = "no solution";
+            //  return;
+        }
+        // divide element on pivot Row
+        // mpt => it is element
+        var mpt = a[vi][vj];
+        for (j = 0; j < col; j++) {
+            var cc;
+            cc = a[vi][j] / mpt;
+            a[vi][j] = cc;
+
+        }
+        b[vi] = b[vi] / mpt;
+        var mmp = 0;
+        mmp = M[vj];
+        var mmj = 0;
+        mmj = a[0][vj];
+        for (j = 0; j < col; j++) {
+            a[0][j] -= a[vi][j] * mmj;
+            M[j] -= a[vi][j] * mmp;
+
+            if (j == col - 1) {
+                b[0] -= b[vi] * mmj;
+                M[M.length - 1] -= b[vi] * mmp;
+            }
+        }
+
+        for (i = 1; i < row; i++) {
+            mpt = a[i][vj];
+            if (i != vi) {
+                for (j = 0; j < col; j++) {
+                    a[i][j] -= a[vi][j] * mpt;
+                }
+                b[i] -= b[vi] * mpt;
+            }
+        }
+        showtable();
+        check();
+    }
+
+    function NewTable() {
+
+        var s = "<font><b>Iteration[" + step + "]</b></font><br/><table border='1' ><tr>";
+        step++;
+        var k;
+        for (i = 0; i < col; i++) {
+            s += "<td width='50'><b>" + th[i] + "</b></td>";
+            k = i;
+        }
+        s += "<td width='50'><b>" + th[k + 1] + "</b></td>";
+        s += "<td width='50'><b>r.h.s</b></td>";
+        s += "<td width='50'><b>bv</b></td></tr>";
+        s += "<tr><td>M</td>";
+        for (i = 0; i < col + 1; i++) {
+            s += "<td><input type='text' size='7' value='" + M[i] + "'/></td>";
+        }
+        s += "</tr>";
+        for (i = 0; i < row; i++) {
+            if (i == 0) {
+                s += "<td width='30'>1</td>";
+            } else {
+                s += "<td width='30' >0</td>";
+            }
+            for (j = 0; j < col; j++) {
+                s += "<td  ><input type='text' size='7' value='" + a[i][j] + "'/></td>"
+            }
+            s += "<td  ><input type='text' size='7' value='" + b[i] + "'/></td>";
+
+            for (as = 0; as < col; as++) {
+                var cd = -1; var cc = 0;
+                if (a[i][as] == 1) {
+                    for (bs = 1; bs < row; bs++) {
+                        if (a[bs][as] == 0) {
+                            cc++;
+                        }
+                    }
+                    if (cc == row - 2) {
+
+                        s += "<td ><input type='text' size='7' value='" + th[as + 1] + "=" + b[i] + "'/></td>";
+                        break;
+                    }
+                }
+            }
+            s += "</tr>";
+
+
+        }
+        s += "</table>";
+
+        return s;
+    }
+
+    function InitTable() {
+        step = 0;
+        display.innerHTML = "";
+        var s;
+        var t = new Array();
+        var Count = parseInt(VN);
+        for (i = 0; i < CN; i++) {
+            s = document.getElementById("equ" + i).options[document.getElementById("equ" + i).selectedIndex].text;
+            if (s == "<=") {
+                Count++;
+            }
+            if (s == ">=") {
+                Count = Count + 2;
+            }
+            if (s == "=") {
+                Count++;
+            }
+        }
+        Count = Count + 1;
+        t[0] = new Array(Count);
+        var tt;
+        t[0][0] = 1;
+        var j;
+        for (j = 1; j <= VN; j++) {
+
+            tt = -parseFloat(document.getElementById('xx' + (j - 1)).value);
+            t[0][j] = tt;
+
+        }
+        for (k = j; k < Count; k++) {
+            t[0][k] = 0;
+        }
+
+        th[0] = "z";
+        for (k = 1; k <= VN; k++) {
+            var xs = 0;
+            xs = k - 1;
+            th[k] = document.getElementById("th" + xs).value;
+
+        }
+
+        var index;
+        index = 1;
+        for (i = 1; i <= CN; i++) {
+            t[i] = new Array(Count);
+            t[i][0] = 0;
+            for (j = 1; j < Count; j++) {
+
+                if (j <= VN) {
+                    var temp;
+                    temp = document.getElementById("x" + (i - 1) + (j - 1)).value;
+                    t[i][j] = parseFloat(temp);
+                }
+
+                if (j > VN) {
+                    t[i][j] = 0;
+
+                }
+
+            }
+            var bb = "";
+            var d = 0;
+            bv = new Array(parseFloat(CN));
+            bb = document.getElementById("equ" + (i - 1)).options[document.getElementById("equ" + (i - 1)).selectedIndex].text;
+            aa = objecttype.options[objecttype.selectedIndex].text
+            if (bb == "<=") {
+                d = parseInt(VN) + parseInt(index);
+                t[i][d] = 1;
+                th[d] = "s" + i;
+                bv[index] = d;
+                index++;
+
+            }
+            if (bb == ">=") {
+                d = parseInt(VN) + parseInt(index);
+                th[d] = "e" + i;
+                t[i][d] = -1;
+                index++;
+                d = parseInt(VN) + parseInt(index);
+                th[d] = "a" + i;
+                t[i][d] = 1;
+                if (aa == "MAX") {
+                    t[0][d] = "M";
+                } else {
+                    t[0][d] = "-M";
+                }
+                bv[index] = d;
+                index++;
+            }
+            if (bb == "=") {
+                d = parseInt(VN) + parseInt(index);
+                th[d] = "a" + i;
+                t[i][d] = 1;
+                if (aa == "MAX") {
+                    t[0][d] = "M";
+                } else {
+                    t[0][d] = "-M";
+                }
+                bv[index] = d;
+                index++;
+            }
+
+
+
+        }
+        //basic var rhs
+        var rhs = new Array(parseInt(CN) + 1);
+        rhs[0] = 0;
+        for (i = 1; i < rhs.length; i++) {
+            rhs[i] = parseFloat(document.getElementById("b" + (i - 1)).value);
+        }
+
+        ////////////////////////////////////////////////////////
+        a = new Array(parseFloat(CN) + 1);
+        for (i = 0; i < a.length; i++) {
+            a[i] = new Array(Count - 1);
+        }
+
+
+        b = new Array(parseFloat(CN) + 1);
+
+        row = parseFloat(CN) + 1;
+        col = Count - 1;
+        M = new Array(col + 1);
+        //////////////////////////////////////////////
+        for (i = 0; i < row; i++) {
+            for (j = 0; j < col; j++) {
+                a[i][j] = t[i][j + 1];
+            }
+            b[i] = rhs[i];
+        }
+        //////////////////////////////////////////
+        var te;
+        for (i = 0; i < col + 1; i++)
+            M[i] = 0;
+        for (j = 0; j < col; j++) {
+            if (a[0][j] == "M" || a[0][j] == "-M") {
+                for (i = 0; i < row; i++) {
+                    if (parseInt(a[i][j]) == 1) {
+                        for (k = 0; k < col; k++) {
+                            if (aa == "MAX") {
+                                M[k] -= a[i][k];
+                            } else {
+                                M[k] += a[i][k];
+                            }
+
+
+                        }
+                        M[j] = 0;
+                        a[0][j] = 0;
+                        if (aa == "MAX") {
+                            M[M.length - 1] -= b[i];
+                        } else {
+                            M[M.length - 1] += b[i];
+                        }
+
+
+                        break;
+                    }
+                }
+            }
+        }
+
+        showtable();
+    }
+</script>
+
+<body>
+    <html>
+
+    <head>
+        <link rel="stylesheet" href="style.css">
+
+    </head>
+
+    <body>
+        <!----------------simplex header------------------------>
+        <div class="headers">
+
+            <h1 style="font-size: 50px;"> M-Technique Method</h1>
+
+        </div>
+        <!-----------------first seccion------------------------>
+        <div class="graphs">
+            <div class="grs-countiner">
+
+                <div class="graphs-image"   >
+                    <img src="Photo/10.jpg"   style="border-radius:50% ;" />
+                </div>
+                <div class="graphs-text">
+                    <h2>Linear Programming M-Technique Method</h2>
+                    <p class="big">The M-Technique Method is one of the most popular methods to solve linear programming
+                        problems. It is an iterative process
+                        to get the feasible optimal solution. In this method, the value of the basic variable keeps
+                        transforming to obtain the
+                        maximum value for the objective function. The algorithm for linear programming simplex method is
+                        provided below:
+                    </p>
+                    <p class="big">
+                        Step 1:</p>
+                    <p> Establish a given problem. (i.e.,) write the inequality constraints and objective function.<br>
+                    </p>
+                    <p class="big">
+                        Step 2: </p>
+                    <p> Convert the given inequalities to equations by adding the slack variable to each inequality
+                        expression.<br>
+                    </p>
+                    <p class="big">
+                        Step 3:</p>
+                    <p> Create the initial simplex tableau. Write the objective function at the bottom row. Here, each
+                        inequality
+                        constraint appears in its own row. Now, we can represent the problem in the form of an augmented
+                        matrix, which is called
+                        the initial simplex tableau.<br>
+                    </p>
+                    <p class="big">
+                        Step 4: </p>
+                    <p>Identify the greatest negative entry in the bottom row, which helps to identify the pivot column.
+                        The
+                        greatest
+                        negative entry in the bottom row defines the largest coefficient in the objective function,
+                        which
+                        will help us to
+                        increase the value of the objective function as fastest as possible.<br>
+                    </p>
+                    <p class="big">
+                        Step 5: </p>
+                    <p> Compute the quotients. To calculate the quotient, we need to divide the entries in the far right
+                        column by the
+                        entries in the first column, excluding the bottom row. The smallest quotient identifies the row.
+                        The
+                        row identified in
+                        this step and the element identified in the step will be taken as the pivot element.<br>
+                    </p>
+                    <p class="big">
+                        Step 6: </p>
+                    <p> Carry out pivoting to make all other entries in column is zero.<br>
+                    </p>
+                    <p class="big">
+                        Step 7: </p>
+                    <p> If there are no negative entries in the bottom row, end the process. Otherwise, start from step
+                        4.<br>
+                    </p>
+                    <p class="big">
+                        Step 8: </p>
+                    <p>Finally, determine the solution associated with the final simplex tableau.<br>
+                    </p>
+                    <br>
+
+
+                </div>
+
+            </div>
+        </div>
+
+        <body class="body_m">
+
+            <br />
+            <br>
+            <center>
+                <div class="center">
+                    <div class="input_m">
+                        <table style="width: 107%;">
+                            <tr>
+                                <td class="style1">
+                                    &nbsp;</td>
+                                <td>
+
+                                    <br><br><br><br><br>
+                                    <font style="font-size: 25px; color:black; font-weight:bold;"> Objective Function
+                                        Type :
+                                        &nbsp;&nbsp;&nbsp;
+                                    </font><select id="objecttype" name="D1" style="width: 300px;margin-left: 35px;    height: 27px;  border-radius: 5px; ">
+                                        <option value="MAX">MAX</option>
+                                        <option value="MIN" selected="selected">MIN</option>
+                                    </select><br />
+                                    <br />
+                                    <font style="font-size: 25px; color:black; font-weight:bold;">The Number of
+                                        Variances
+                                        :&nbsp; &nbsp;</font><input type='text' id='nvar'
+                                        style="width:300px;margin-left: 35px;   height: 27px;   border-radius: 5px;" /><br />
+                                    <br />
+                                    <font style="font-size: 25px; color:black; font-weight:bold;">The Number of
+                                        Constrains:
+                                    </font>
+                                    &nbsp;&nbsp;
+                                    <input type='text' id='ncon' style="margin-left: 30px; width:300px;  height: 27px;  border-radius: 5px;" /><br />
+                                    <br />
+                                    <br><br><BR><br>
+                                    &nbsp;<input type="button" value="Inputs" class="btn_m" onclick="CreateOJ()"
+                                        style="border: 2px solid black;background:black; color:white; height:50px; width:175px; margin-left:250px;  border-radius: 15px;" />&nbsp;&nbsp;
+
+                                </td>
+                            </tr>
+                        </table>
+                        <br>
+                    </div>
+                </div>
+                <br><br>
+                <hr />
+                <br><br>
+                <div><b style="font-size:20px; font-weight:bold;color:black;">Objective Function:</b><br></div>
+                <div id="of" align="center">
+
+                </div>
+                <br><br>
+                <div><b style="font-size:20px; font-weight:bold;color:black;">Subject TO:</b><br><br></div>
+
+                <div id="constr" align="center"> </div>
+                <br><br><br>
+                <input type="button" value="Create" onclick="InitTable()" id="beginbutton"
+                    style="border: 2px solid  white;background:black; color:white; height:50px; width:175px; margin-left:0px;  border-radius: 15px;" />
+                <input type="button" value="Solve" onclick="solve()" id="bd"
+                    style="border: 2px solid white;background:black; color:white; height:50px; width:175px; margin-left:150px;   border-radius: 15px;  " />
+                <br>
+
+                <div id="display" />
+                <div id="message" />
+                <br><br><br><br><br><br><br>
+            </center>
+
+            <!--------------foter----------------------------->
+            <div class="fotter">
+                <h4 class="ftrsmpx" style="font-size: 30px;">
+                    Try to solve the problem with your selve then make sure of your solution
+                </h4>
+
+            </div>
+
+
+
+
+        </body>

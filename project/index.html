@@ -1,0 +1,264 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Oswald:wght@300&family=Red+Hat+Mono:ital,wght@1,400;1,500&display=swap"
+        rel="stylesheet">
+    <title>Linear Programing WebSite</title>
+
+</head>
+
+<body>
+
+
+    <!-----------------------Header seaction--------------------->
+
+    <!---------------------- nav bar -------------------------->
+
+    <div class="header">
+        <!---------------------- nav bar -------------------------->
+
+
+        <div class="head_des">
+            <h5> Welcome to </h5>
+            <h1> Linear Programing Website </h1>
+            <p>
+                We 're here to solve linear programing problem and make you sure of your solution
+            </p>
+            <button>Graphecial </button>
+            <button onclick=" eventButton()"> Simplex</button>
+            <button onclick=" eventButton2()">M-Techbique</button>
+            <button>2-phase</button>
+            <br>
+            <button> North Weast </button>
+            <button> Least Cost</button>
+            <button>Vogal Approxi</button>
+        </div>
+    </div>
+
+    <!------------------- grapgcail section  -------------------------------------------->
+
+    <div class="graph" style="border-bottom-left-radius: 250px;  border-top-right-radius: 250px ; margin-top: 50px;"  >
+        <div class="gr-countiner">
+
+            <div class="graph-image">
+                <img src="Photo/g1.jpg" />
+            </div>
+            <div class="graph-text">
+                <h2> Graphical solutions </h2>
+                <p>Graphical solutions are limited to linear programming problems with only two decision variables .
+
+                </p>
+                <p>
+                    The graphical method is realistically limited to models with only two decision variables, which can
+                    be
+                    represented on a
+                    graph of two dimensions. Models with three decision variables can be graphed in three dimensions,
+                    but the
+                    process is
+                    quite cumbersome, and models of four or more decision variables cannot be graphed at all.
+                </p>
+                <button class="grpg-butn"><a>Learn more</a></button>
+
+            </div>
+
+        </div>
+    </div>
+    <br>
+
+    <!-------------------------simplex   m-tecnic      2 phase ------------------->
+    <div class="container">
+        <div class="simplex"  style="padding-top :30px ;">
+            <img src="Photo/11.jpg" style="width: 100%; height: 250px; ;">
+            <div class="layer">
+                <h2>Simplex</h2>
+                <p>The simplex method provides a systematic search so that the objective function increases (in the case
+                    of maximisation)
+                    progressively until the basic feasible solution has been identified where the objective function is
+                    maximised. The
+                    computational aspect of the simplex method is presented in the next section.
+                </p>
+                <a href="simplex.html"> <button> Learn more</button> </a>
+
+            </div>
+        </div>
+
+        <div class="M-technic">
+            <img src="Photo/10.jpg">
+            <div class="layer">
+                <h2>M-technic</h2>
+                <p>The ‘M’ technique can provide a simple method of touching for nurses to help put the care back into
+                    health care, or for
+                    massage therapists looking for a different way to touch the very fragile client. The ‘M’ technique
+                    is empowering because
+                    it is quick to learn and quick to do. Different from Massage
+                </p>
+                <a href="M-Technique.html"> <button> Learn more</button></a>
+
+            </div>
+        </div>
+        <div class="phase">
+            <img src="Photo/12.jpg"   style="width: 100%;  height: 250px; margin-bottom: 10px;">
+            <div class="layer">
+                <h2>2-phase</h2>
+                <p>In Two Phase Method, the whole procedure of solving a linear programming problem (LPP) involving
+                    artificial variables is
+                    divided into two phases. In phase I, we form a new objective function by assigning zero to every
+                    original variable
+                    (including slack and surplus variables) and -1 to each of the artificial variables.
+                </p>
+                <button> Learn more</button>
+
+            </div>
+        </div>
+        <div class="clr"></div>
+    </div>
+    <br>
+    <div>
+        <!------------------------ transportation modle-------------------------------->
+        <div class="graph"   style="background-color: rgb(195, 218, 219);   border-end-end-radius: 200px;  border-top-left-radius: 200px"  >
+            <div class="gr-countiner"  >
+
+                <div class="graph-text">
+                    <h2> Transportation Model </h2>
+                    <p>The transportation model is concerned with selecting the routes between supply and demand points in order to minimize
+                    costs of transportation subject to constraints of supply at any supply point and demand at any demand point.
+
+                    </p>
+                    <p>Transportation and assignment models are special purpose algorithms of the linear programming. The simplex method of
+                    Linear Programming Problems(LPP) proves to be inefficient is certain situations like determining optimum assignment of
+                    jobs to persons, supply of materials from several supply points to several destinations and the like. More effective
+                    solution models have been evolved and these are called assignment and transportation models.
+                    </p>
+
+
+                </div>
+                <div class="graph-image">
+                    <img src="Photo/13.jpg"  style="padding-bottom: 70px;   border-radius: 50px " />
+                </div>
+
+
+            </div>
+        </div>
+        <!----------------transportation solution ---------------------------->
+
+    </div>
+    <div class="container" style="padding-top: 50px ;">
+        <div class="simplex">
+            <img src="Photo/17.jpg"  style="width:100% ;    border-radius: 50px; padding-top: 10px;">
+            <div class="layer">
+                <h2>North Weast Method</h2>
+                <p>The Northwest Corner Method (or upper left-hand corner) is a heuristic that is applied to a special type of Linear
+                Programming problem structure called the Transportation Model, which ensures that there is an initial basic feasible
+                solution (non artificial).Other methods for obtaining an initial basic solution are the Minimum Cell Cost Method and the
+                Vogel Approximation Model.
+                </p>
+                <button> Learn more</button>
+
+            </div>
+        </div>
+
+        <div class="M-technic">
+            <img src="Photo/15.jpg"  style="width:100% ;  border-radius: 50px;">
+            <div class="layer">
+                <h2>Least Cost Method</h2>
+                <p>Definition: The Least Cost Method is another method used to obtain the initial feasible solution for the transportation
+                problem. Here, the allocation begins with the cell which has the minimum cost. The lower cost cells are chosen over the
+                higher-cost cell with the objective to have the least cost of transportation.
+                </p>
+                <button> Learn more</button>
+
+            </div>
+        </div>
+        <div class="phase">
+            <img src="Photo/16.jpg"   style="width:100% ;   border-radius: 50px; padding-top: 10px; ">
+            <div class="layer"  style="padding-top: 10px;">
+                <h2>Vogal Approximation Method</h2>
+                <p>The Vogel approximation method (Unit cost penalty method) is an iterative procedure for computing a basic feasible
+                solution of a transportation problem.
+                This method is preferred over the two methods discussed in the previous sections, because the initial basic feasible
+                solution obtained by this method is either optimal or very close to the optimal solution.
+                </p>
+                <button  style="margin-bottom: 10px;"> Learn more</button>
+
+            </div>
+        </div>
+        <div class="clr"></div>
+    </div>
+
+    <!---------------------about us------------------------>
+
+    <div class="container">
+        <div class="member">
+            <img src="Photo/7.jpg">
+            <br><br>
+            <div class="layer">
+                <h2>
+                    Salma Gamal Korani
+                </h2>
+            </div>
+            <br>
+        </div>
+
+
+        <div class="member">
+            <img src="Photo/7.jpg">
+            <br><br>
+            <div class="layer">
+                <h2>
+                    Shymaa Medhat
+                </h2>
+            </div>
+
+            <br>
+        </div>
+
+        <div class="clr"></div>
+
+    </div>
+    <!--------------------foter----------------------------------->
+    <div class="foter">
+
+
+        <div class="about-us">
+            <h3>
+                About us
+            </h3>
+            <p>
+                We are students in faculty of computer scince and information system <br> We did this project to help
+                students to make sure of there solution and solve alot of problems to be more and more intelegence and
+                effictive
+            </p>
+            <hr class="hr-s">
+        </div>
+
+
+
+    </div>
+    </div>
+
+
+    <script>
+        function eventButton() {
+            location.href = "simplex.html";
+        }
+        function eventButton2() {
+            location.href = "M-Technique.html";
+        }
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>

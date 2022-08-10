@@ -1,0 +1,594 @@
+.header {
+    background-color: aqua;
+    height: 100vh;
+    padding: 1px;
+    background-image: url(Photo/5.jpg);
+    background-size: 100% 100%;
+
+
+
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+p {
+    margin: 20px;
+}
+
+.head_des {
+
+    width: 50%;
+    margin: auto;
+    text-align: center;
+    padding-top: 250px;
+    color: white;
+}
+
+.head_des h1 {
+    font-family: 'Red Hat Mono', monospace;
+    font-size: 70px;
+}
+
+.head_des h5 {
+    font-family: 'Red Hat Mono', monospace;
+    font-size: 25 px;
+}
+
+.navbar {
+
+    /*background-color: tomato;*/
+    overflow: auto;
+    padding-top: 35px;
+    width: 80%;
+    margin: auto;
+    position: fixed;
+
+}
+
+.clr {
+    clear: both;
+}
+
+.navbar ul {
+    /*background-color: violet;*/
+    float: right;
+    list-style: none;
+
+
+}
+
+.navbar ul li {
+    /*display: inline-block;*/
+    float: left;
+
+}
+
+.navbar ul li a {
+    text-decoration: none;
+    margin: 20px;
+    color: white;
+
+}
+
+.graph {
+
+    overflow: auto;
+    padding-top: 70px;
+    background-color: rgb(238, 246, 255);
+}
+
+.graph .graph-text {
+    width: 60%;
+
+    float: left;
+    padding-left: 30px;
+    padding-top: 100px;
+}
+
+.graph .graph-image {
+    width: 40%;
+
+    float: right;
+
+}
+
+.graph .graph-image img {
+    width: 100%;
+}
+
+.gr-countiner {
+    width: 80%;
+    margin: auto;
+}
+
+.seting a {
+
+    color: white;
+    width: 60px;
+    height: 40px;
+    position: fixed;
+    top: 250px;
+    right: 0px;
+
+}
+
+.simplex {
+    width: 33.3%;
+    float: left;
+
+    border: 5px white solid;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.M-technic {
+
+
+    width: 33.3%;
+    float: left;
+
+    border: 5px white solid;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.phase {
+    width: 33.3%;
+    float: left;
+
+    border: 5px white solid;
+    box-sizing: border-box;
+    position: relative;
+
+}
+
+.simplex .phase .M-technic img {
+
+    width: 50%;
+}
+
+.layer {
+    text-align: center;
+
+
+
+}
+
+.container {
+
+    width: 80%;
+    margin: auto;
+}
+
+.clr {
+    clear: both;
+}
+
+.head_des button {
+    margin: 20px 10px;
+    padding: 10px 35px;
+    background-color: transparent;
+    border: 2px solid #fff;
+    color: #fff;
+    transition-duration: 1s;
+    border-radius: 5px;
+}
+
+.head_des button:hover {
+
+    background-color: #fff;
+    color: black;
+    border: 2px solid black;
+    margin: 40px 20px;
+    padding: 20px 70px;
+    border-radius: 10px;
+
+
+
+}
+
+.simplex button {
+
+    margin: 20px 10px;
+    padding: 10px 35px;
+    background-color: black;
+    border: 2px solid #fff;
+    color: #fff;
+    transition-duration: 1s;
+    border-radius: 5px;
+
+}
+
+.phase button {
+    margin: 20px 10px;
+    padding: 10px 35px;
+    background-color: black;
+    border: 2px solid #fff;
+    color: #fff;
+    transition-duration: 1s;
+    border-radius: 5px;
+
+}
+
+.M-technic button {
+    margin: 20px 10px;
+    padding: 10px 35px;
+    background-color: black;
+    border: 2px solid #fff;
+    color: #fff;
+    transition-duration: 1s;
+    border-radius: 5px;
+
+
+}
+
+.simplex button:hover {
+
+    background-color: #fff;
+    color: black;
+    border: 2px solid black;
+    margin: 40px 20px;
+    padding: 20px 70px;
+    border-radius: 10px;
+
+}
+
+.M-technic button:hover {
+
+    background-color: #fff;
+    color: black;
+    border: 2px solid black;
+    margin: 40px 20px;
+    padding: 20px 70px;
+    border-radius: 10px;
+
+
+}
+
+.phase button:hover {
+    background-color: #fff;
+    color: black;
+    border: 2px solid black;
+    margin: 40px 20px;
+    padding: 20px 70px;
+    border-radius: 10px;
+
+
+
+}
+
+.grpg-butn {
+
+    margin: 20px 10px;
+    padding: 10px 35px;
+    background-color: black;
+    border: 2px solid #fff;
+    color: #fff;
+    transition-duration: 1s;
+    border-radius: 5px;
+}
+
+.grpg-butn:hover {
+
+    background-color: #fff;
+    color: black;
+    border: 2px solid black;
+    margin: 40px 20px;
+    padding: 20px 70px;
+    border-radius: 10px;
+
+}
+
+.member {
+
+    background-color: black;
+    width: 29%;
+    float: right;
+    color: #fff;
+
+    margin: 20px 120px;
+
+}
+
+.member img {
+
+    width: 100%;
+    border: 5px solid black;
+    box-sizing: border-box;
+    transition-duration: 5s;
+}
+
+.clr {
+    clear: both;
+}
+.member img:hover {
+    transform: rotate(360deg);
+    border-radius: 50%;
+
+}
+.foter {
+    background-color: black;
+    height: 50vh;
+   padding-top: 1px;
+}
+.about-us{
+
+   margin: 20px ;
+   margin-top: 40px;
+    color: #fff;
+    width: 30%;
+}
+.hr-s{
+    color: #fff;
+}
+.clr{
+    clear: both;
+}
+.headers{
+    background-color: black;
+    color: #fff;
+      height:25vh ;
+      text-align: center;
+      font-size: 50;
+      padding-top: 60px;
+}
+.graphs {
+
+    overflow: auto;
+    padding-top: 70px;
+    background-color: rgb(214, 214, 214);
+}
+
+.graphs .graphs-text {
+    width: 60%;
+
+    float: left;
+    padding-left: 30px;
+    padding-top: 50px;
+}
+
+.graphs .graphs-image {
+    width: 40%;
+
+    float: right;
+
+}
+
+.graphs .graphs-image img {
+    padding-top: 150px;
+    width: 100%;
+}
+
+.grs-countiner {
+    width: 80%;
+    margin: auto;
+}
+.graphs-text   p{
+
+margin: 15px;
+
+}
+
+.big{
+
+    text-transform: capitalize;
+  font-style: italic;
+  font-size: 18;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.fotter{
+    background-color: black;
+    height: 25vh;
+}
+.ftrsmpx{
+
+    color: #fff;
+    font-size: 24;
+    text-align: center;
+    padding-top: 90px;
+}
+
+.graphss {
+
+    overflow: auto;
+    padding-top: 70px;
+    background-color: rgb(238, 246, 255);
+    padding-bottom: 70px;
+}
+
+.graphss .graphss-text {
+    width: 20%;
+
+    float: right;
+    padding-left: 80px;
+    padding-top: 100px;
+
+}
+
+.graphss .graphss-image {
+    width: 50%;
+
+    float: left;
+
+}
+
+.graphss .graphss-image img {
+    width: 100%;
+}
+
+.grss-countiner {
+    width: 80%;
+    margin: auto;
+}
+
+.tablesimplex{
+
+    width: 100%;
+    border:   black solid;
+    
+}
+
+.tablesimplex td{
+    text-align: center;
+   padding: 15px;
+}
+.tbles{
+
+height: 25px;
+width: 50px; 
+}
+.lbl{
+  font-size: x-large;
+
+
+}
+.result{
+
+    height: 25px;
+}
+.simplexb{
+        margin: 20px 10px;
+        padding: 10px 35px;
+        background-color: black;
+        border: 2px solid #fff;
+        color: #fff;
+        transition-duration: 1s;
+        margin-left: -500px;
+
+
+}
+
+.input_m{
+    
+    padding: 0px   200px  ;
+   
+    transform: rotate(360deg);
+        border-radius: 50%;
+}
+
+
+.btn_m:hover{
+    background-color: white;
+    border: solid  black;
+    color: black;
+}
+
+
+.center  {
+
+
+width: 80%;
+background-color: rgb(218, 219, 221);
+border-radius: 100px;
+
+}
+
+
+.input_m{
+
+    border-radius: 50px;
+   
+}
+.table_s{
+    transform: rotate(360deg);
+        border-radius: 50%;
+
+    
+}
+
+.img_s{
+
+    border-radius: 50%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*  Shymaa */
+.choice{
+    margin-left: 90px;
+    padding-left: 20px;
+    padding-right: 20px;
+    align-content: center;   
+}
+.lab1{
+    margin-right: 50px;
+    margin-bottom: 20px;
+}
+.lab2{
+    margin-right: 105px;
+}
+.choice input{
+    margin-right: 160px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 110px;
+}
+.choice button{
+         width: 180px;
+         font-size: 20;
+        margin: 20px 10px;
+        padding: 10px 35px;
+        background-color: black;
+        border: 2px solid #fff;
+        transition-duration: 1s;
+        margin-left: 150px;
+
+
+}
+.choice button a{
+    text-decoration: none;
+}
+
+
+
+   
+
+
+
+
+
